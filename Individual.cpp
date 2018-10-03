@@ -11,7 +11,7 @@ int generateRandom(int s, int e)
 {
   std::random_device rd;
   std::mt19937 mt(rd());
-  std::uniform_int_distribution<int> r(s-1, e);
+  std::uniform_int_distribution<int> r(s, e);
 
   return r(mt);
 }

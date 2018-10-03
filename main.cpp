@@ -57,12 +57,13 @@ int main()
       newGeneration.push_back(population[i]);
     }
 
-    //Take the top 90% fit individuals and breed them in order for new generation
+    //Take the top 90% fit individuals and breed them randomly for new generation
     s = (90*POPULATION_SIZE)/100;
-    for(int i = 0; i < s; i+=2)
+    for(int i = 0; i < s; i++)
     {
+      int random = generateRandom(0, 20);
       Individual* parent1 = &population[i];
-      Individual* parent2 = &population[i+1];
+      Individual* parent2 = &population[random];
       Individual child = parent1->mate(parent2);
 
       newGeneration.push_back(child);
