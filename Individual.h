@@ -5,9 +5,9 @@
 
 /**Constant Variables**/
 //GENES is a set of all possibile characters in a chromosome
-const std::string GENES = "abcdefghijklmnopqrstuvwxyz .,!:;?/";
+const std::string GENES = "abcdefghijklmnopqrstuvwxyz .,!:;?/-";
 //TARGET is the target chromosome to be generated
-const std::string TARGET = "this is a genetic algorithm!";
+const std::string TARGET = "this is the target string";
 
 class Individual
 {

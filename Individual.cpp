@@ -1,3 +1,6 @@
+# if !defined(__INDIVIDUAL_CPP__)
+# define __INDIVIDUAL_CPP__
+
 #include<string>
 #include<random>
 #include"Individual.h"
@@ -92,3 +95,5 @@ bool operator>(const Individual &ind1, const Individual &ind2)
 {
   return ind1.getFitness() > ind2.getFitness();
 }
+
+# endif
