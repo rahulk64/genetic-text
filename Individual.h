@@ -16,13 +16,13 @@ public:
   //Constructor that takes parameter of a chromosome
   Individual(std::string c);
   //Function to produce a child with current Individual and otherParent as parents
-  Individual mate(Individual otherParent);
+  Individual mate(Individual* otherParent);
   //Function to calculate fitness score of current Individual
   int calcFitness();
   //Function to return fitness score of current Individual
-  int getFitness();
+  int getFitness() const;
   //Function to return chromosome of current individual
-  std::string getChromosome();
+  std::string getChromosome() const;
 
 private:
   /**Class Variables**/

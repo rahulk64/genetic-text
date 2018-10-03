@@ -30,7 +30,7 @@ Individual::Individual(std::string c)
 
 //Mates current Individual and otherParent to produce an offspring
 //with a combination of the parent's chromosome
-Individual Individual::mate(Individual otherParent)
+Individual Individual::mate(Individual* otherParent)
 {
   std::string childChromosome = "";
   for(int i = 0; i < chromosome.size(); i++)
@@ -46,7 +46,7 @@ Individual Individual::mate(Individual otherParent)
     //45% chance inherits from other parent
     else if(p < 0.9)
     {
-      childChromosome += otherParent.chromosome[i];
+      childChromosome += otherParent->chromosome[i];
     }
     //10% chance random mutation
     else
@@ -76,13 +76,19 @@ int Individual::calcFitness()
 };
 
 //Getter method for fitness score
-int Individual::getFitness()
+int Individual::getFitness() const
 {
   return this->fitness;
 };
 
 //Getter method for chromosome
-std::string Individual::getChromosome()
+std::string Individual::getChromosome() const
 {
   return this->chromosome;
 };
+
+//Overloading comparator
+bool operator>(const Individual &ind1, const Individual &ind2)
+{
+  return ind1.getFitness() > ind2.getFitness();
+}
