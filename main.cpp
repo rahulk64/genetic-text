@@ -41,8 +41,10 @@ int main()
     //sorts based on fitness
     sort(population.begin(), population.end(), descending());
 
-    cout << "Highest Fitness: " << population[0].getChromosome() << endl;
+    cout << "Highest Fitness: " << population[0].getChromosome();
+    cout << " score = " << population[0].getFitness() << endl;
 
+    //10% fittest population moves on to next generation
     int s = (10*POPULATION_SIZE)/100;
     for(int i = 0; i < s; i++)
     {
@@ -63,11 +65,11 @@ int main()
     }
 
     //checks if match; if not, destroy 50% of current population
-    for(int i = newGeneration.size(); i < population.size(); i++)
+    for(int i = 0; i < newGeneration.size(); i++)
     {
-      if(population[i].getFitness() == TARGET.size())
+      if(newGeneration[i].getFitness() == TARGET.size())
       {
-        cout << "Found at Gen " << generation << ": " << population[i].getChromosome() << endl;
+        cout << "Found at Gen " << generation << ": " << newGeneration[i].getChromosome() << endl;
         match = true;
         break;
       }
