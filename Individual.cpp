@@ -1,15 +1,16 @@
 #include<string>
-#include<cstdlib> //srand random number generation
-#include<ctime>   // time random number generation
+#include<random>
 #include"Individual.h"
 
 /**Helper Methods for Class Implementation**/
-//Generates a random integer in the range [s, e)
+//Generates a random integer in the range [s, e]
 int generateRandom(int s, int e)
 {
-  srand(time(NULL));
-  int r = rand()%(e-s+1);
-  return s + r;
+  std::random_device rd;
+  std::mt19937 mt(rd());
+  std::uniform_int_distribution<int> r(s-1, e);
+
+  return r(mt);
 }
 
 //Generates a random character as a "mutation" from a set of genes

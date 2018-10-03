@@ -1,8 +1,6 @@
 #include<iostream>
 #include<vector>
 #include<string>
-#include<cstdlib>
-#include<ctime>
 #include"Individual.cpp"
 
 using namespace std;
@@ -14,7 +12,19 @@ string generateChromosome();
 
 int main()
 {
-  
+  vector<pair<Individual,int>> population;
+
+  for(int i = 0; i < POPULATION_SIZE; i++)
+  {
+    Individual curr(generateChromosome());
+    population.push_back(make_pair(curr, curr.getFitness()));
+  }
+
+  for(int i = 0; i < POPULATION_SIZE; i++) {
+    cout << i << ": " << population[i].first.getChromosome() << " , " << population[i].second << endl;
+  }
+
+  return 0;
 }
 
 string generateChromosome()
