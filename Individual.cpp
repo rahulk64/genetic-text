@@ -1,6 +1,6 @@
 #include<string>
-#include<cstdlib>
-#include<ctime>
+#include<cstdlib> //srand random number generation
+#include<ctime>   // time random number generation
 #include"Individual.h"
 
 /**Helper Methods for Class Implementation**/
@@ -37,14 +37,17 @@ Individual Individual::mate(Individual otherParent)
     int r = generateRandom(0, 100);
     double p = (double)r/100.0;
 
+    //45% chance inherits from current Individual
     if(p < 0.45)
     {
       childChromosome += this->chromosome[i];
     }
+    //45% chance inherits from other parent
     else if(p < 0.9)
     {
       childChromosome += otherParent[i];
     }
+    //10% chance random mutation
     else
     {
       childChromosome += makeMutation();
@@ -61,6 +64,7 @@ int Individual::calcFitness()
   int count = 0;
   for(int i = 0; i < this->chromosome.size(); i++)
   {
+    //Fitness calculated on individual character equality
     if(this->chromosome[i] == TARGET[i])
     {
       count++;
