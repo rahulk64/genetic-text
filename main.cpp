@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define POPULATION_SIZE 10
+#define POPULATION_SIZE 100
 //Target String in Individual.h
 
 string generateChromosome();
