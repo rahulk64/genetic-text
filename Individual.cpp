@@ -21,17 +21,17 @@ char makeMutation()
 
 /**Class Implementation Methods**/
 //Constructor for Individual Class
-Individual::Individual(string c)
+Individual::Individual(std::string c)
 {
   this->chromosome = c;
-  fitness = calcFitness();
-}
+  this->fitness = calcFitness();
+};
 
 //Mates current Individual and otherParent to produce an offspring
 //with a combination of the parent's chromosome
 Individual Individual::mate(Individual otherParent)
 {
-  string childChromosome = "";
+  std::string childChromosome = "";
   for(int i = 0; i < chromosome.size(); i++)
   {
     int r = generateRandom(0, 100);
@@ -45,7 +45,7 @@ Individual Individual::mate(Individual otherParent)
     //45% chance inherits from other parent
     else if(p < 0.9)
     {
-      childChromosome += otherParent[i];
+      childChromosome += otherParent.chromosome[i];
     }
     //10% chance random mutation
     else
@@ -55,7 +55,7 @@ Individual Individual::mate(Individual otherParent)
   }
 
   return Individual(childChromosome);
-}
+};
 
 //Method to calculate fitness of a given Individual
 //Calculated based on individual equality of characters
@@ -72,4 +72,16 @@ int Individual::calcFitness()
   }
 
   return count;
-}
+};
+
+//Getter method for fitness score
+int Individual::getFitness()
+{
+  return this->fitness;
+};
+
+//Getter method for chromosome
+std::string Individual::getChromosome()
+{
+  return this->chromosome;
+};
