@@ -25,6 +25,7 @@ struct descending
 int main()
 {
   vector<Individual> population;
+  vector<Individual> newGeneration;
   bool match = false;
   int generation = 1;
 
@@ -42,9 +43,15 @@ int main()
 
     cout << "Highest Fitness: " << population[0].getChromosome() << endl;
 
+    int s = (10*POPULATION_SIZE)/100;
+    for(int i = 0; i < s; i++)
+    {
+      newGeneration.push_back(population[i]);
+    }
+
     //breeding
-    int pop = population.size();
-    for(int i = 0; i < pop; i+=2)
+    s = (90*POPULATION_SIZE)/100;
+    for(int i = 0; i < s; i+=2)
     {
       Individual* parent1 = &population[i];
       Individual* parent2 = &population[i+1];
@@ -52,26 +59,21 @@ int main()
 
       //cout << "Child Born: " << child.getChromosome() << endl;
 
-      population.push_back(child);
+      newGeneration.push_back(child);
     }
 
     //checks if match; if not, destroy 50% of current population
-    for(int i = population.size()/8; i < population.size(); i++)
+    for(int i = newGeneration.size(); i < population.size(); i++)
     {
-      if(population[i].getChromosome() == TARGET)
+      if(population[i].getFitness() == TARGET.size())
       {
         cout << "Found at Gen " << generation << ": " << population[i].getChromosome() << endl;
         match = true;
         break;
       }
-
-      double kill = (double)generateRandom(0, 100)/100.0;
-      if(kill <= 0.5)
-      {
-        population.erase(population.begin() + i);
-      }
     }
 
+    population = newGeneration;
     generation++;
 
   }
